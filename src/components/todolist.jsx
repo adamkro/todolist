@@ -1,9 +1,9 @@
 //shortcut - rcc
 
 import React, { useState } from "react";
-import Task from "./task";
 import AddTask from "./addtask";
 import tasksdata from "../tasksdata";
+import TaskList from "./tasklist";
 
 function ToDoList(props) {
   const [tasks, setTasks] = useState(tasksdata);
@@ -14,41 +14,59 @@ function ToDoList(props) {
     changedTask.text = text;
     changedTask.done = done;
     setTasks(newTasks);
-
-    //   //event.preventDefault();  **check how to cancel enter->refresh
   };
 
   const handleNewTask = (text) => {
     const newTask = { id: Math.random(), text, done: false }; //CHANGE ID
     setTasks([newTask, ...tasks]);
-
-    //   //event.preventDefault();  **check how to cancel enter->refresh
   };
 
-  function renderTasks(list, done) {
-    return list
-      .filter((task) => task.done === done)
-      .map((task) => (
-        <li key={task.id} className="list-group-item">
-          <Task key={task.id} task={task} handleChange={handleChange} />
-        </li>
-      ));
-  }
+  // function renderTasks(list, done) {
+  //   return list
+  //     .filter((task) => task.done === done)
+  //     .map((task) => (
+  //       <li key={task.id} className="list-group-item">
+  //         <Task key={task.id} task={task} handleChange={handleChange} />
+  //       </li>
+  //     ));
+  // }
 
   return (
     <div className="tdl">
       <ul className="list-group">
         <li className="list-group-item">
-          <AddTask key={1} handleNewTask={handleNewTask} />
+          <AddTask key={0} handleNewTask={handleNewTask} />
         </li>
       </ul>
-      <h5>To Do</h5>
-      <ul className="list-group">{renderTasks(tasks, false)}</ul>
-      <h5>Done</h5>
-      <ul className="list-group done">{renderTasks(tasks, true)}</ul>
+      <TaskList
+        title="To Do"
+        tasks={tasks}
+        done={false}
+        handleChange={handleChange}
+      />
+      <TaskList
+        title="Done"
+        tasks={tasks}
+        done={true}
+        handleChange={handleChange}
+      />
     </div>
   );
 }
+//   return (
+//     <div className="tdl">
+//       <ul className="list-group">
+//         <li className="list-group-item">
+//           <AddTask key={0} handleNewTask={handleNewTask} />
+//         </li>
+//       </ul>
+//       <h5>To Do</h5>
+//       <ul className="list-group">{renderTasks(tasks, false)}</ul>
+//       <h5>Done</h5>
+//       <ul className="list-group done">{renderTasks(tasks, true)}</ul>
+//     </div>
+//   );
+// }
 
 export default ToDoList;
 

@@ -5,7 +5,7 @@ function AddTask(props) {
   const handleChangeText = (event) => setText(event.target.value);
 
   const handlePush = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     if (text === "") return;
     let newText = text;
     setText("");
@@ -14,7 +14,12 @@ function AddTask(props) {
 
   return (
     <div className="row">
-      <form onSubmit={(event) => handlePush(event)}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          handlePush(event);
+        }}
+      >
         <input
           checked={text === "" ? false : true}
           type="checkbox"
