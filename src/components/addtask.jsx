@@ -9,7 +9,7 @@ function AddTask(props) {
     if (text === "") return;
     let newText = text;
     setText("");
-    return props.handleNewTask(newText);
+    props.handleNewTask(newText);
   };
 
   return (
@@ -19,7 +19,7 @@ function AddTask(props) {
           checked={text === "" ? false : true}
           type="checkbox"
           className="mx-4 add-icon"
-          onClick={(event) => handlePush(event)}
+          onChange={(event) => handlePush(event)}
         />
 
         <input
