@@ -19,7 +19,7 @@ function AddTask(props) {
           checked={text === "" ? false : true}
           type="checkbox"
           className="mx-4 add-icon"
-          onChange={(event) => handlePush(event)}
+          onClick={(event) => handlePush(event)}
         />
 
         <input
