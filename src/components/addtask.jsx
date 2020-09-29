@@ -13,28 +13,32 @@ function AddTask(props) {
   };
 
   return (
-    <div className="row">
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          handlePush(event);
-        }}
-      >
-        <input
-          checked={text === "" ? false : true}
-          type="checkbox"
-          className="mx-4 add-icon"
-          onChange={(event) => handlePush(event)}
-        />
+    <ul className="list-group">
+      <li className="list-group-item">
+        <div className="row">
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              handlePush(event);
+            }}
+          >
+            <input
+              checked={text === "" ? false : true}
+              type="checkbox"
+              className="mx-4 add-icon"
+              onChange={(event) => handlePush(event)}
+            />
 
-        <input
-          type="text"
-          value={text}
-          placeholder="New task"
-          onChange={handleChangeText}
-        />
-      </form>
-    </div>
+            <input
+              type="text"
+              value={text}
+              placeholder="New task"
+              onChange={handleChangeText}
+            />
+          </form>
+        </div>
+      </li>
+    </ul>
   );
 }
 

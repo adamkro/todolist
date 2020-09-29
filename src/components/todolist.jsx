@@ -33,11 +33,7 @@ function ToDoList(props) {
 
   return (
     <div className="tdl">
-      <ul className="list-group">
-        <li className="list-group-item">
-          <AddTask key={0} handleNewTask={handleNewTask} />
-        </li>
-      </ul>
+      <AddTask key={"add button"} handleNewTask={handleNewTask} />
       <TaskList
         title="To Do"
         tasks={tasks}
