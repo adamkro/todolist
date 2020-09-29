@@ -1,6 +1,56 @@
 .App {
   text-align: center;
 }
+input[type="checkbox"] {
+  position: relative;
+  cursor: pointer;
+}
+input[type="checkbox"]:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  border: 1px solid #1b1f1d;
+  border-radius: 3px;
+  background-color: white;
+}
+
+add-icon {
+  color: green;
+}
+input[type="checkbox"]:checked:after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid rgb(73, 156, 112);
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 2px;
+  left: 6px;
+}
+
+input {
+  border: hidden;
+  outline: none;
+}
+
+.done input {
+  color: grey;
+  text-decoration: line-through;
+}
+
+.tdl {
+  padding: 20px;
+  border-style: ridge;
+  border-color: cadetblue;
+}
 
 .App-logo {
   height: 40vmin;
