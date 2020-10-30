@@ -17,8 +17,25 @@ async function getListsTitles() {
   return data;
 }
 
+// archive done tasks created more than 30 days ago
+function archiveOldDoneTasks() {
+  const oldDate = new Date().setDate(new Date().getDate() - 30); // 30 days ago
+  axios
+    .put(`http://localhost:5000/archive`, {
+      done: true,
+      createdAt: { $lt: oldDate },
+    })
+    .then(() => {
+      console.log("Auto-archive request sent");
+    })
+    .catch((err) => {
+      console.log("Error: ", err);
+    });
+}
+
 // returns a list of todolists
 export async function getFilteredLists() {
+  archiveOldDoneTasks();
   const titles = await getListsTitles();
   const FilteredLists = Promise.all(
     titles.map(async (title) => ({
