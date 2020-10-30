@@ -1,6 +1,25 @@
 .App {
   text-align: center;
 }
+
+main {
+  height: calc(100vh - 58px);
+}
+
+.done input {
+  color: grey;
+  text-decoration: line-through;
+}
+.tdl {
+  padding: 20px;
+  border-style: ridge;
+  border-color: cadetblue;
+}
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
 input[type="checkbox"] {
   position: relative;
   cursor: pointer;
@@ -18,9 +37,6 @@ input[type="checkbox"]:before {
   background-color: white;
 }
 
-add-icon {
-  color: green;
-}
 input[type="checkbox"]:checked:after {
   content: "";
   display: block;
@@ -41,17 +57,9 @@ input {
   outline: none;
 }
 
-.done input {
-  color: grey;
-  text-decoration: line-through;
+.removebutton {
+  float: right;
 }
-
-.tdl {
-  padding: 20px;
-  border-style: ridge;
-  border-color: cadetblue;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;

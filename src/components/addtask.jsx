@@ -4,8 +4,7 @@ function AddTask(props) {
   const [text, setText] = useState("");
   const handleChangeText = (event) => setText(event.target.value);
 
-  const handlePush = (event) => {
-    //event.preventDefault();
+  const handlePush = () => {
     if (text === "") return;
     let newText = text;
     setText("");
@@ -14,9 +13,10 @@ function AddTask(props) {
 
   return (
     <ul className="list-group">
-      <li className="list-group-item">
+      <li className="list-group-item py-2">
         <div className="row">
           <form
+            className="w-100"
             onSubmit={(event) => {
               event.preventDefault();
               handlePush(event);
@@ -25,13 +25,14 @@ function AddTask(props) {
             <input
               checked={text === "" ? false : true}
               type="checkbox"
-              className="mx-4 add-icon"
+              className="mr-3 add-icon ml-1"
               onChange={(event) => handlePush(event)}
             />
 
             <input
               type="text"
               value={text}
+              style={{ width: "80%" }}
               placeholder="New task"
               onChange={handleChangeText}
             />
