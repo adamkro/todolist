@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const User = require("../models/user.model.js");
+//const User = require("../models/user.model.js");
 const Task = require("../models/task.model.js");
 const ToDoLists = require("../models/todolists.model.js");
 const Archive = require("../models/archive.model.js");

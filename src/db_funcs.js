@@ -1,6 +1,16 @@
 import axios from "axios";
 const hardcodedUser = "adam";
 
+// auto-add lectures task 9am
+const lessons = require("./lessons_data");
+const schedule = require("node-schedule");
+console.log(lessons);
+lessons.forEach((lesson) => {
+  schedule.scheduleJob(`0 9 * * ${lesson.day} `, () =>
+    addTaskDB(lesson.name, "Uni Lectures")
+  );
+});
+
 async function getTasksByTDL(title) {
   const { data } = await axios.get(`http://localhost:5000/tasks/${title}`);
   return data
