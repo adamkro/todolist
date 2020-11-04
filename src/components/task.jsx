@@ -22,8 +22,8 @@ function Task(props) {
     <div className="flex-row">
       <form className="w-100" onSubmit={(event) => event.preventDefault()}>
         <input
-          checked={done}
           type="checkbox"
+          checked={done}
           className="mr-3 ml-1"
           onChange={() => props.handleChange(id, text, !done)}
         />
@@ -34,12 +34,9 @@ function Task(props) {
           onChange={(event) => props.handleChange(id, event.target.value, done)}
           onBlur={() => updateTaskDb(id, text, done)}
         />
-        <Link
-          show={text.includes("http")}
-          title={linkTitle}
-          id={id}
-          url={text}
-        />
+        {text.includes("http") ? (
+          <Link title={linkTitle} id={id} url={text} />
+        ) : null}
       </form>
     </div>
   );

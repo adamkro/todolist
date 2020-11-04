@@ -2,16 +2,13 @@ import React from "react";
 import Task from "./task";
 
 export default function TaskList(props) {
-  const { title, tasks, done, handleChange, show } = props;
-  if (!show) return null; //hide
+  const { title, tasks, handleChange } = props;
 
-  const tasklist = tasks
-    .filter((task) => task.done === done)
-    .map((task) => (
-      <li key={task.id} className="list-group-item p-1">
-        <Task key={task.id} task={task} handleChange={handleChange} />
-      </li>
-    ));
+  const tasklist = tasks.map((task) => (
+    <li key={task.id} className="list-group-item p-1">
+      <Task key={task.id} task={task} handleChange={handleChange} />
+    </li>
+  ));
 
   return (
     <div className={props.className}>

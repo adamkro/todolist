@@ -2,8 +2,7 @@ import React from "react";
 import ReactTooltip from "react-tooltip";
 
 export default function Link(props) {
-  const { show, title, id, url } = props;
-  if (!show) return null;
+  const { title, id, url } = props;
 
   return (
     <div className="float-right m-0 p-0">

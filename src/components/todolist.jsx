@@ -8,8 +8,8 @@ import HideButton from "./hidebutton";
 
 function ToDoList(props) {
   const [tasks, setTasks] = useState(props.fetchedTasks);
-  const title = props.title;
   const [show, setShow] = useState(false);
+  const { title } = props;
 
   const handleChange = (id, text, done) => {
     const newTasks = tasks.slice();
@@ -36,20 +36,19 @@ function ToDoList(props) {
         <AddTask key={"add button"} handleNewTask={handleNewTask} />
         <TaskList
           title="To Do"
-          tasks={tasks}
-          done={false}
+          tasks={tasks.filter((tsk) => tsk.done === false)}
           show={true}
           handleChange={handleChange}
         />
         <HideButton handleHide={handleHide} show={show} />
-        <TaskList
-          title="Done"
-          className="done"
-          tasks={tasks}
-          done={true}
-          show={show}
-          handleChange={handleChange}
-        />
+        {show && (
+          <TaskList
+            title="Done"
+            className="done"
+            tasks={tasks.filter((tsk) => tsk.done === true)}
+            handleChange={handleChange}
+          />
+        )}
       </div>
     </div>
   );

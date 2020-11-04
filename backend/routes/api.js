@@ -105,7 +105,7 @@ router.put("/archive", async (req, res) => {
     try {
       const tasks = await Task.find(req.body);
       tasks.forEach((task) => {
-        let { username, todolist, text, done } = task;
+        let { username, todolist, text, done } = task; // Ido: excellent
         const archivedTask = new Archive({ username, todolist, text, done });
         archivedTask.save((error) => {
           if (error) {

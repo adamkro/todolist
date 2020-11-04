@@ -6,6 +6,7 @@ export default function Delete(props) {
   const handleClick = () => {
     let del = window.confirm("Are you sure?");
     if (del) {
+      // Delete items only using id, not title
       removeList(title);
       DeleteListDB(title);
     }

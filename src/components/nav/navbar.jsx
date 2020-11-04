@@ -8,18 +8,15 @@ export default class Navbar extends Component {
     };
   }
   componentDidMount() {
-    fetch("  https://api.kanye.rest/")
+    fetch("https://api.kanye.rest/")
       .then((response) => response.json())
-      .then(
-        (data) => {
+      .then((data) => {
           this.setState({
             quote: data.quote,
           });
-        },
-        (error) => {
+        }, (error) => {
           console.log("Kanye api error");
-        }
-      );
+        });
   }
   render() {
     return (

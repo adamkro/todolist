@@ -27,6 +27,8 @@ async function getListsTitles() {
   return data;
 }
 
+// Ido: all comments are unnecessary
+
 // archive done tasks created more than 30 days ago
 function archiveOldDoneTasks() {
   const oldDate = new Date().setDate(new Date().getDate() - 30); // 30 days ago
@@ -83,15 +85,16 @@ export function updateTaskDb(id, text, done) {
 
 // add a new title to todolists doc of a user
 export function addToDoListDB(title) {
-  if (title === "") return; //BUG FIX (create empty tdl which grabs all tasks)
-  axios
-    .put(`http://localhost:5000/updatelists/${hardcodedUser}`, { title })
-    .then(() => {
-      console.log("Data sent to server");
-    })
-    .catch(() => {
-      console.log("Error sending new list to server");
-    });
+  if (title !== "") {
+    axios
+      .put(`http://localhost:5000/updatelists/${hardcodedUser}`, { title })
+      .then(() => {
+        console.log("Data sent to server");
+      })
+      .catch(() => {
+        console.log("Error sending new list to server");
+      });
+  }
 }
 
 // move all tasks with listname to archive collection

@@ -2,13 +2,17 @@ import React, { useState } from "react";
 
 function AddTask(props) {
   const [text, setText] = useState("");
-  const handleChangeText = (event) => setText(event.target.value);
+
+  const handleChangeText = (event) => {
+    setText(event.target.value);
+  };
 
   const handlePush = () => {
-    if (text === "") return;
-    let newText = text;
-    setText("");
-    props.handleNewTask(newText);
+    if (text !== "") {
+      let newText = text;
+      setText("");
+      props.handleNewTask(newText);
+    }
   };
 
   return (
@@ -23,7 +27,7 @@ function AddTask(props) {
             }}
           >
             <input
-              checked={text === "" ? false : true}
+              checked={text}
               type="checkbox"
               className="mr-3 add-icon ml-1"
               onChange={(event) => handlePush(event)}

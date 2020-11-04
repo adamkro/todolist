@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const weekday = [
+const WEEKDAY = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -16,27 +16,25 @@ export default function Card() {
   let month = today.toLocaleString("default", { month: "short" });
 
   const [wikiTitle, setWikiTitle] = useState("");
-  const [refreshWiki, setRefreshWiki] = useState(0);
 
   const url = "https://en.wikipedia.org/api/rest_v1/page/random/title"; //REST API
   // ANOTHER AVAILABLE: "https://en.wikipedia.org/w/api.php?action=query&origin=*&list=random&rnnamespace=0&format=json";
+
+  function getNewWiki(){
+    axios.get(url).then((wikiItem) => {
+      setWikiTitle(wikiItem.data.items[0].title)
+    });
+  }
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await axios.get(url);
-        setWikiTitle(res.data.items[0].title);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, [refreshWiki]);
+    getNewWiki();
+  }, []);
 
   return (
     <div>
       <div className="card text-white bg-info m-3">
         <div className="card-header pb-0">
           <h3 className="card-title">{`${
-            weekday[today.getDay()]
+            WEEKDAY[today.getDay()]
           }, ${today.getDate()} ${month}`}</h3>
         </div>
         <div className="card-body p-2">
@@ -51,7 +49,7 @@ export default function Card() {
           <button
             type="button"
             className="btn btn-dark float-right"
-            onClick={() => setRefreshWiki(refreshWiki + 1)} //re-run useEffect
+            onClick={getNewWiki} //re-run useEffect
           >
             <svg
               width="1em"
